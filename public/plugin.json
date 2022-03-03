@@ -1,0 +1,12 @@
+{
+  "id": "1646287967",
+  "name": "demo",
+  "version": "1.0.0.1",
+  "description": "This is a demo project.",
+  "icon": "/demo.png",
+  "permissions": [
+    "call.listen",
+    "call.dial"
+  ],
+  "plugin_type": "background"
+}

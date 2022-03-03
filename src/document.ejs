@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Salesforce CRM</title>
+    <script src="<%= context.config.publicPath %>plugin_sdk.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="root"></div>
+<script>
+    /**
+     * 监听事件：
+     * 窗口初始化完成
+     * 回调函数参数：
+     * userConfig 用户参数
+     * pluginPath 插件安装地址
+     *
+     */
+    pluginSDK.eventEmitter.on('onInitPluginWindowOk', function ({ userConfig, pluginPath }) {
+        console.log('onInitPluginWindowOk', userConfig, pluginPath);
+
+        /**
+         * 设置初始窗口参数
+         * @param data {
+         * width:'宽度(int)',
+         * height:'高度(int)',
+         * winX:'窗口相对于屏幕左侧的偏移量(如果使用了Y,此必选)(int)',
+         * winY:'窗口相对于屏幕顶端的偏移量(如果使用了X,此必选)(int)',
+         * center:'是否居中true/false（与X,Y互斥）',
+         * show:'是否显示true/false'}
+         */
+        pluginSDK.setDefaultWindow({
+            width: 482,
+            height: 586,
+            center: true,
+            show: false,
+        })
+    })
+</script>
+</body>
+</html>
