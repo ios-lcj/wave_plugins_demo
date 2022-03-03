@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import styles from './index.less';
 
 const IndexPage = () => {
-    
+  
+
     /**
      * 获取用户配置信息
      */
@@ -17,7 +18,7 @@ const IndexPage = () => {
             }
         });
     }
-    
+
     /**
      * 添加用户配置信息
      * 注意：会覆盖之前的配置信息
@@ -36,7 +37,7 @@ const IndexPage = () => {
             }
         })
     }
-    
+
     /**
      * 发起语音通话
      */
@@ -49,7 +50,7 @@ const IndexPage = () => {
             }
         })
     }
-    
+
     /**
      * 发起视频通话
      */
@@ -62,12 +63,12 @@ const IndexPage = () => {
             }
         })
     }
-    
+
     const closeWindow = () => {
         // @ts-ignore
         pluginSDK.hideWindow();
     }
-    
+
     useEffect(() => {
         /**
          * 监听收到语音/视频来电
@@ -78,12 +79,12 @@ const IndexPage = () => {
             // 打印log日志
             // @ts-ignore
             pluginSDK.log.log("onRecvP2PIncomingCall", callType, callNum);
-            
+
             // 打开通知
             // @ts-ignore
             pluginSDK.displayNotification({ notificationBody: 'onRecvP2PIncomingCall' })
         });
-        
+
         /**
          * 监听wave发起语音/视频
          * 回调函数参数：callType,callNum
@@ -93,12 +94,12 @@ const IndexPage = () => {
             // 打印info日志
             // @ts-ignore
             pluginSDK.log.info("onInitP2PCall", callType, callNum);
-            
+
             // 打开通知
             // @ts-ignore
             pluginSDK.displayNotification({ notificationBody: 'onInitP2PCall' })
         });
-        
+
         /**
          * 监听拒绝语音/视频
          * 回调函数参数：callType,callNum
@@ -108,12 +109,12 @@ const IndexPage = () => {
             // 打印warn日志
             // @ts-ignore
             pluginSDK.log.warn("onRejectP2PCall", callType, callNum);
-            
+
             // 关闭通知窗口
             // @ts-ignore
             pluginSDK.hideNotification();
         });
-        
+
         /**
          * 监听挂断语音/视频
          * 回调函数参数：callType, callNum, callStartTimeStamp, callEndTimeStamp, callDirection
@@ -124,12 +125,12 @@ const IndexPage = () => {
             // 打印warn日志
             // @ts-ignore
             pluginSDK.log.warn("onHangupP2PCall", callType, callNum, callStartTimeStamp, callEndTimeStamp, callDirection);
-            
+
             // 关闭通知窗口
             // @ts-ignore
             pluginSDK.hideNotification();
         });
-        
+
         /**
          * 监听取消去电
          * 回调函数参数：callType, callNum
@@ -139,31 +140,31 @@ const IndexPage = () => {
             // error
             // @ts-ignore
             pluginSDK.log.error("p2PCallCanceled", callType, callNum);
-            
+
             // 关闭通知窗口
             // @ts-ignore
             pluginSDK.hideNotification();
-            
+
         });
-        
+
         return function cleanup() {
             // @ts-ignore
             pluginSDK.eventEmitter.off('onRecvP2PIncomingCall');
-            
+
             // @ts-ignore
             pluginSDK.eventEmitter.off('onInitP2PCall');
-            
+
             // @ts-ignore
             pluginSDK.eventEmitter.off('onRejectP2PCall');
-            
+
             // @ts-ignore
             pluginSDK.eventEmitter.off('onHangupP2PCall');
-            
+
             // @ts-ignore
             pluginSDK.eventEmitter.off('p2PCallCanceled');
         };
     }, []);
-    
+
     return (
         <div>
             <h1 className={styles.title}>Page index</h1>
