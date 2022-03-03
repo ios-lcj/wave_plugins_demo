@@ -12,7 +12,7 @@ const IndexPage = () => {
       data,
     }: {
       errorCode: number;
-      data: string;
+      data: any;
     }) {
       // @ts-ignore
       pluginSDK.log.log(errorCode, data);
@@ -52,7 +52,7 @@ const IndexPage = () => {
     // @ts-ignore
     pluginSDK.call.makeP2PAudioCall(
       { callNumber: '1111' },
-      function ({ errorCode }) {
+      function ({ errorCode }: { errorCode: number }) {
         if (errorCode === 0) {
           // @ts-ignore
           pluginSDK.log.log('MakeP2PAudioCall success');
@@ -68,7 +68,7 @@ const IndexPage = () => {
     // @ts-ignore
     pluginSDK.call.makeP2PVideoCall(
       { callNumber: '1111' },
-      function ({ errorCode }) {
+      function ({ errorCode }: { errorCode: number }) {
         if (errorCode === 0) {
           // @ts-ignore
           pluginSDK.log.log('MakeP2PAudioCall success');
@@ -90,7 +90,7 @@ const IndexPage = () => {
     // @ts-ignore
     pluginSDK.eventEmitter.on(
       'onRecvP2PIncomingCall',
-      function ({ callType, callNum }) {
+      function ({ callType, callNum }: { callType: string; callNum: string }) {
         // 打印log日志
         // @ts-ignore
         pluginSDK.log.log('onRecvP2PIncomingCall', callType, callNum);
@@ -110,7 +110,7 @@ const IndexPage = () => {
     // @ts-ignore
     pluginSDK.eventEmitter.on(
       'onInitP2PCall',
-      function ({ callType, callNum }) {
+      function ({ callType, callNum }: { callType: string; callNum: string }) {
         // 打印info日志
         // @ts-ignore
         pluginSDK.log.info('onInitP2PCall', callType, callNum);
@@ -128,7 +128,7 @@ const IndexPage = () => {
     // @ts-ignore
     pluginSDK.eventEmitter.on(
       'onRejectP2PCall',
-      function ({ callType, callNum }) {
+      function ({ callType, callNum }: { callType: string; callNum: string }) {
         // 打印warn日志
         // @ts-ignore
         pluginSDK.log.warn('onRejectP2PCall', callType, callNum);
@@ -144,7 +144,7 @@ const IndexPage = () => {
      * 回调函数参数：callType, callNum, callStartTimeStamp, callEndTimeStamp, callDirection
      */
     // @ts-ignore
-    pluginSDK.eventEmitter.on('onHangupP2PCall', function (data) {
+    pluginSDK.eventEmitter.on('onHangupP2PCall', function (data: any) {
       const {
         callType,
         callNum,
@@ -175,7 +175,7 @@ const IndexPage = () => {
     // @ts-ignore
     pluginSDK.eventEmitter.on(
       'p2PCallCanceled',
-      function ({ callType, callNum }) {
+      function ({ callType, callNum }: { callType: string; callNum: string }) {
         // error
         // @ts-ignore
         pluginSDK.log.error('p2PCallCanceled', callType, callNum);
