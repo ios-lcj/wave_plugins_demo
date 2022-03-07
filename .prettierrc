@@ -1,11 +1,24 @@
 {
   "singleQuote": true,
   "trailingComma": "all",
-  "printWidth": 80,
+  "printWidth": 120,
   "overrides": [
     {
       "files": ".prettierrc",
       "options": { "parser": "json" }
     }
-  ]
+  ],
+  "prettier.tabWidth": 4,
+    "prettier.semi": false,
+    "prettier.singleQuote": true,
+    "typescript.preferences.quoteStyle": "single",
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "prettier.requireConfig": false,
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
+    "files.associations": {
+    },
+    "prettier.useEditorConfig": false
 }

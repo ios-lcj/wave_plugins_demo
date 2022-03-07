@@ -7,13 +7,7 @@ const IndexPage = () => {
    */
   const getUserConfig = () => {
     // @ts-ignore
-    pluginSDK.userConfig.getUserConfig(function ({
-      errorCode,
-      data,
-    }: {
-      errorCode: number;
-      data: any;
-    }) {
+    pluginSDK.userConfig.getUserConfig(function ({ errorCode, data }: { errorCode: number; data: any }) {
       // @ts-ignore
       pluginSDK.log.log(errorCode, data);
       if (errorCode === 0 && data) {
@@ -50,15 +44,12 @@ const IndexPage = () => {
    */
   const makeP2PAudioCall = () => {
     // @ts-ignore
-    pluginSDK.call.makeP2PAudioCall(
-      { callNumber: '1111' },
-      function ({ errorCode }: { errorCode: number }) {
-        if (errorCode === 0) {
-          // @ts-ignore
-          pluginSDK.log.log('MakeP2PAudioCall success');
-        }
-      },
-    );
+    pluginSDK.call.makeP2PAudioCall({ callNumber: '1111' }, function ({ errorCode }: { errorCode: number }) {
+      if (errorCode === 0) {
+        // @ts-ignore
+        pluginSDK.log.log('MakeP2PAudioCall success');
+      }
+    });
   };
 
   /**
@@ -66,15 +57,12 @@ const IndexPage = () => {
    */
   const makeP2PVideoCall = () => {
     // @ts-ignore
-    pluginSDK.call.makeP2PVideoCall(
-      { callNumber: '1111' },
-      function ({ errorCode }: { errorCode: number }) {
-        if (errorCode === 0) {
-          // @ts-ignore
-          pluginSDK.log.log('MakeP2PAudioCall success');
-        }
-      },
-    );
+    pluginSDK.call.makeP2PVideoCall({ callNumber: '1111' }, function ({ errorCode }: { errorCode: number }) {
+      if (errorCode === 0) {
+        // @ts-ignore
+        pluginSDK.log.log('MakeP2PAudioCall success');
+      }
+    });
   };
 
   const closeWindow = () => {
@@ -108,18 +96,15 @@ const IndexPage = () => {
      * 回调函数参数：callType,callNum
      */
     // @ts-ignore
-    pluginSDK.eventEmitter.on(
-      'onInitP2PCall',
-      function ({ callType, callNum }: { callType: string; callNum: string }) {
-        // 打印info日志
-        // @ts-ignore
-        pluginSDK.log.info('onInitP2PCall', callType, callNum);
+    pluginSDK.eventEmitter.on('onInitP2PCall', function ({ callType, callNum }: { callType: string; callNum: string }) {
+      // 打印info日志
+      // @ts-ignore
+      pluginSDK.log.info('onInitP2PCall', callType, callNum);
 
-        // 打开通知
-        // @ts-ignore
-        pluginSDK.displayNotification({ notificationBody: 'onInitP2PCall' });
-      },
-    );
+      // 打开通知
+      // @ts-ignore
+      pluginSDK.displayNotification({ notificationBody: 'onInitP2PCall' });
+    });
 
     /**
      * 监听拒绝语音/视频
@@ -145,23 +130,10 @@ const IndexPage = () => {
      */
     // @ts-ignore
     pluginSDK.eventEmitter.on('onHangupP2PCall', function (data: any) {
-      const {
-        callType,
-        callNum,
-        callStartTimeStamp,
-        callEndTimeStamp,
-        callDirection,
-      } = data;
+      const { callType, callNum, callStartTimeStamp, callEndTimeStamp, callDirection } = data;
       // 打印warn日志
       // @ts-ignore
-      pluginSDK.log.warn(
-        'onHangupP2PCall',
-        callType,
-        callNum,
-        callStartTimeStamp,
-        callEndTimeStamp,
-        callDirection,
-      );
+      pluginSDK.log.warn('onHangupP2PCall', callType, callNum, callStartTimeStamp, callEndTimeStamp, callDirection);
 
       // 关闭通知窗口
       // @ts-ignore
